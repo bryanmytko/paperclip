@@ -51,7 +51,19 @@ module Paperclip
     def download_content
       options = { read_timeout: Paperclip.options[:read_timeout] }.compact
 
-      open(@target, **options)
+      open_http(@target, **options)
+    end
+
+    def open_http(name, *rest)
+      uri = validate_url(name)
+      open(uri, *rest)
+    end
+
+    def validate_url
+      name.tap do
+         raise RoutableUrlError if
+           PrivateAddressCheck.resolves_to_private_address? name.hostname.to_s
+      end
     end
 
     def copy_to_tempfile(src)

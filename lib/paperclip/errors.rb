@@ -30,5 +30,9 @@ module Paperclip
     # should be throwing this error upon the infinite loop as well.
     class InfiniteInterpolationError < Paperclip::Error
     end
+
+    # Will be thrown if the URL violates security parameters.
+    class RoutableUrlError < Paperclip::Error
+    end
   end
 end

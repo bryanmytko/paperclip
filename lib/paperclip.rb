@@ -64,6 +64,7 @@ rescue LoadError
   require "mime/types"
 end
 
+require 'private_address_check'
 require 'mimemagic'
 require 'mimemagic/overlay'
 require 'logger'
